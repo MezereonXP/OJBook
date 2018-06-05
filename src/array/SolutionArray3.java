@@ -6,6 +6,7 @@ package array;
  * @author: mezereonxp Email: mezereonxp@gmail.com
  * @create: 2018/6/5
  **/
+
 public class SolutionArray3 {
     public void rotate(int[] nums, int k) {
         int shift = k % nums.length;
