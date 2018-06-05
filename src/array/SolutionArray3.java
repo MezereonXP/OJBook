@@ -12,9 +12,10 @@ public class SolutionArray3 {
         int shift = k % nums.length;
         int length = nums.length;
         int currentPostion = 0;
-        if (shift == 0)
+        if (shift == 0) {
             return;
-        if (shift%2 == 0){
+        }
+        if (shift % 2 == 0) {
             shift--;
             for (int i = 0; i < length; i++) {
                 int temp = nums[0];
@@ -30,7 +31,6 @@ public class SolutionArray3 {
             nums[(currentPostion + shift) % length] = temp;
             currentPostion = (currentPostion + shift) % length;
         }
-
 
     }
 }
