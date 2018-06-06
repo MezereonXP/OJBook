@@ -11,9 +11,9 @@ public class SolutionArray3Test {
 
     @Test
     public void rotate() throws Exception {
-        int[] data1 = {1,2,3,4,5,6,7};
+        int[] data1 = {1,2,3,4,5,6};
         SolutionArray3 solutionArray3 = new SolutionArray3();
-        solutionArray3.rotate(data1, 5);
+        solutionArray3.rotate(data1, 4);
     }
 
 }

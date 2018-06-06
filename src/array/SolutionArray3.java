@@ -19,29 +19,31 @@ public class SolutionArray3 {
 
     public void rotateWithRecursive(int[] nums, int start, int end, int k) {
 
-        int shift = - end + start + 2*k - 1;
-        if (2*k == nums.length && nums.length%2 == 0){
-            for (int i = start; i < k; i++) {
+        int shift = -end + start + 2 * k - 1;
+        int n = end - start + 1;
+        if (n % 2 == 0 && 2 * k == n) {
+            for (int i = start; i < start + k; i++) {
                 int temp = nums[i];
-                nums[i] = nums[i+k];
-                nums[i+k] = temp;
+                nums[i] = nums[i + k];
+                nums[i + k] = temp;
             }
+            return;
         }
 
-        if (2*k < nums.length){
-            for (int i = start; i < end - start - k + 1; i++) {
+        if (2 * k < n) {
+            for (int i = start; i < start + k; i++) {
                 int temp = nums[i];
-                nums[i] = nums[i+k];
-                nums[i+k] = temp;
+                nums[i] = nums[i + end - start - k + 1];
+                nums[i + end - start - k + 1] = temp;
             }
-            rotateWithRecursive(nums, start + k, end, shift);
+            rotateWithRecursive(nums, start + k, end, k);
         }
 
-        if (2*k > nums.length){
-            for (int i = start; i < end - start - k + 1; i++) {
+        if (2 * k > n) {
+            for (int i = start; i < end - k + 1; i++) {
                 int temp = nums[i];
-                nums[i] = nums[i+k];
-                nums[i+k] = temp;
+                nums[i] = nums[i + k];
+                nums[i + k] = temp;
             }
             rotateWithRecursive(nums, start, start + k - 1, shift);
         }
