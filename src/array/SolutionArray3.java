@@ -8,29 +8,42 @@ package array;
  **/
 
 public class SolutionArray3 {
+
     public void rotate(int[] nums, int k) {
         int shift = k % nums.length;
-        int length = nums.length;
-        int currentPostion = 0;
         if (shift == 0) {
             return;
         }
-        if (shift % 2 == 0) {
-            shift--;
-            for (int i = 0; i < length; i++) {
-                int temp = nums[0];
-                nums[0] = nums[(currentPostion + 1) % length];
-                nums[(currentPostion + 1) % length] = temp;
-                currentPostion = (currentPostion + 1) % length;
+        rotateWithRecursive(nums, 0, nums.length - 1, shift);
+    }
+
+    public void rotateWithRecursive(int[] nums, int start, int end, int k) {
+
+        int shift = - end + start + 2*k - 1;
+        if (2*k == nums.length && nums.length%2 == 0){
+            for (int i = start; i < k; i++) {
+                int temp = nums[i];
+                nums[i] = nums[i+k];
+                nums[i+k] = temp;
             }
         }
-        currentPostion = 0;
-        for (int i = 0; i < length; i++) {
-            int temp = nums[0];
-            nums[0] = nums[(currentPostion + shift) % length];
-            nums[(currentPostion + shift) % length] = temp;
-            currentPostion = (currentPostion + shift) % length;
+
+        if (2*k < nums.length){
+            for (int i = start; i < end - start - k + 1; i++) {
+                int temp = nums[i];
+                nums[i] = nums[i+k];
+                nums[i+k] = temp;
+            }
+            rotateWithRecursive(nums, start + k, end, shift);
         }
 
+        if (2*k > nums.length){
+            for (int i = start; i < end - start - k + 1; i++) {
+                int temp = nums[i];
+                nums[i] = nums[i+k];
+                nums[i+k] = temp;
+            }
+            rotateWithRecursive(nums, start, start + k - 1, shift);
+        }
     }
 }
