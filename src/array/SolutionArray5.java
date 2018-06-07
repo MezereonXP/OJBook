@@ -6,7 +6,7 @@ import java.util.Set;
 
 /**
  * @program: SolutionArray5
- * @description: Solution for array 4 in leetcode
+ * @description: Solution for array 5 in leetcode
  * @author: mezereonxp Email: mezereonxp@gmail.com
  * @create: 2018/6/6
  **/
