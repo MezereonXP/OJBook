@@ -8,23 +8,41 @@ package dp;
  **/
 public class SolutionDP3 {
     public int maxSubArray(int[] nums) {
-        int[] note = new int[nums.length];
-        int[] isToEnd = new int[nums.length];
+        if (nums.length == 1) {
+            return nums[0];
+        }
+        int max = Integer.MIN_VALUE;
+        int min = Integer.MAX_VALUE;
+        int maxPosition = 0, minPosition = 0;
+        int sum = 0;
         for (int i = 0; i < nums.length; i++) {
-            if (i == 0) {
-                note[i] = nums[i];
-            } else {
-                if (isToEnd[i - 1] == 0) {
-                    note[i] = Math.max(note[i - 1] + nums[i], nums[i]);
-                    note[i] = Math.max(note[i], note[i - 1]);
-                    isToEnd[i] = note[i] == note[i - 1] ? nums[i] : 0;
-                } else {
-                    note[i] = Math.max(note[i - 1], nums[i]);
-                    note[i] = Math.max(note[i], isToEnd[i - 1] + nums[i]);
-                    isToEnd[i] = note[i] == note[i - 1] ? Math.max(isToEnd[i - 1] + nums[i], nums[i]) : 0;
+            sum += nums[i];
+            if (sum < min) {
+                min = sum;
+                minPosition = i;
+            }
+        }
+        sum = 0;
+        maxPosition = -1;
+        for (int i=0;i< nums.length;i++){
+            sum += nums[i];
+            if (sum > max && i > minPosition) {
+                max = sum;
+                maxPosition = i;
+            }
+        }
+        if (maxPosition == -1){
+            sum = 0;
+            max = Integer.MAX_VALUE;
+            for (int i=0;i< nums.length;i++){
+                sum += nums[i];
+                if (sum < max && i < minPosition) {
+                    max = sum;
+                    maxPosition = i;
                 }
             }
         }
-        return note[nums.length - 1];
+        int result = maxPosition > minPosition ? (max - min) : (min - max);
+        return result>nums[0]?result:nums[0];
     }
 }
