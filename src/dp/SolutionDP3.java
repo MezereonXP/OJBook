@@ -8,41 +8,25 @@ package dp;
  **/
 public class SolutionDP3 {
     public int maxSubArray(int[] nums) {
-        if (nums.length == 1) {
-            return nums[0];
-        }
-        int max = Integer.MIN_VALUE;
-        int min = Integer.MAX_VALUE;
-        int maxPosition = 0, minPosition = 0;
         int sum = 0;
+        int[] profit = new int[nums.length];
         for (int i = 0; i < nums.length; i++) {
-            sum += nums[i];
-            if (sum < min) {
-                min = sum;
-                minPosition = i;
+            if (i == 0) {
+                profit[i] = nums[i];
+                continue;
             }
-        }
-        sum = 0;
-        maxPosition = -1;
-        for (int i=0;i< nums.length;i++){
-            sum += nums[i];
-            if (sum > max && i > minPosition) {
-                max = sum;
-                maxPosition = i;
-            }
-        }
-        if (maxPosition == -1){
-            sum = 0;
-            max = Integer.MAX_VALUE;
-            for (int i=0;i< nums.length;i++){
+            if (nums[i] < 0) {
                 sum += nums[i];
-                if (sum < max && i < minPosition) {
-                    max = sum;
-                    maxPosition = i;
+                profit[i] = Math.max(profit[i - 1], nums[i]);
+            } else if (nums[i] > 0) {
+                sum += nums[i];
+                profit[i] = Math.max(profit[i - 1], nums[i]);
+                profit[i] = Math.max(profit[i], profit[i - 1] + sum);
+                if (profit[i] == profit[i - 1] + sum || profit[i] == nums[i]) {
+                    sum = 0;
                 }
             }
         }
-        int result = maxPosition > minPosition ? (max - min) : (min - max);
-        return result>nums[0]?result:nums[0];
+        return profit[nums.length - 1];
     }
 }
