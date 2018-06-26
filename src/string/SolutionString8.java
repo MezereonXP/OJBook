@@ -1,43 +1,47 @@
 package string;
 
 /**
- * @program: SolutionString8
- * @description: Solution string 8 in leetcode
+ * @program: OJBook
+ * @description: Solution for string 8 on leetcode
  * @author: mezereonxp Email: mezereonxp@gmail.com
- * @create: 2018/6/22
+ * @create: 2018-06-26 09:23
  **/
 public class SolutionString8 {
-    public String countAndSay(int n) {
-        String temp = "1";
-        for (int i = 1; i < n; i++) {
-            temp = count(temp);
-        }
-        return temp;
-    }
-
-    public String count(String n) {
-        char[] chars = n.toCharArray();
-        if (chars.length == 0) {
+    public String longestCommonPrefix(String[] strs) {
+        int position = 0;
+        if (strs.length == 0) {
             return "";
+        } else if (strs.length == 1) {
+            return strs[0];
         }
+        int minLength = getMinLength(strs);
+        int flag = 1;
         String result = "";
-        char temp = chars[0];
-        int count = 1;
-        for (int i = 1; i < chars.length; i++) {
-            if (chars[i] != temp) {
-                result += count + "" + temp;
-                count = 1;
-                temp = chars[i];
+        while (position < minLength) {
+            char temp = strs[0].charAt(position);
+            for (int i = 1; i < strs.length; i++) {
+                if (temp != strs[i].charAt(position)) {
+                    flag = 0;
+                    break;
+                }
+            }
+            if (flag == 1) {
+                result += temp;
+                position++;
             } else {
-                count++;
+                break;
             }
-            if (i ==  chars.length - 1 ) {
-                result += count + "" + temp;
-            }
-        }
-        if (chars.length == 1){
-            return "1"+temp;
         }
         return result;
+    }
+
+    private int getMinLength(String[] strs) {
+        int min = strs[0].length();
+        for (String s : strs) {
+            if (s.length() < min) {
+                min = s.length();
+            }
+        }
+        return min;
     }
 }
