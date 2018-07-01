@@ -1,9 +1,5 @@
 package string;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 /**
  * @program: OJBook
  * @description: Solution for string 7 on leetcode

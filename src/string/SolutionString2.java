@@ -1,7 +1,5 @@
 package string;
 
-import java.util.Arrays;
-
 /**
  * @program: OJBook
  * @description: Solution for string 2 in leetcode
@@ -22,13 +20,13 @@ public class SolutionString2 {
             chars[i] = chars[s.length() - 1 - i];
             chars[s.length() - 1 - i] = temp;
         }
-        try{
+        try {
             Integer integer = new Integer(String.valueOf(chars));
-            if (flag == 1){
+            if (flag == 1) {
                 integer *= -1;
             }
             return integer;
-        } catch (Exception e){
+        } catch (Exception e) {
             return 0;
         }
 

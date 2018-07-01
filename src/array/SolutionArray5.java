@@ -1,9 +1,5 @@
 package array;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * @program: SolutionArray5
  * @description: Solution for array 5 in leetcode
@@ -16,7 +12,7 @@ public class SolutionArray5 {
         for (int i = 0; i < nums.length - windowSize + 1; i++) {
             int count = windowSize;
             int j = 1;
-            if (nums[i] == Integer.MAX_VALUE){
+            if (nums[i] == Integer.MAX_VALUE) {
                 continue;
             }
             while (count >= 0) {

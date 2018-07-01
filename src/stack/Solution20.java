@@ -16,26 +16,26 @@ public class Solution20 {
         Stack stack = new Stack();
         char[] chars = s.toCharArray();
         for (int i = 0; i < chars.length; i++) {
-            if (stack.empty())
+            if (stack.empty()) {
                 stack.push(chars[i]);
-            else {
-                switch (chars[i]){
+            } else {
+                switch (chars[i]) {
                     case ']':
-                        if ((char)stack.peek() == '['){
+                        if ((char) stack.peek() == '[') {
                             stack.pop();
                         } else {
                             stack.push(chars[i]);
                         }
                         break;
                     case ')':
-                        if ((char)stack.peek() == '('){
+                        if ((char) stack.peek() == '(') {
                             stack.pop();
                         } else {
                             stack.push(chars[i]);
                         }
                         break;
                     case '}':
-                        if ((char)stack.peek() == '{'){
+                        if ((char) stack.peek() == '{') {
                             stack.pop();
                         } else {
                             stack.push(chars[i]);

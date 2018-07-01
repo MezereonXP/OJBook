@@ -1,7 +1,5 @@
 package string;
 
-import java.util.Arrays;
-
 /**
  * @program: OJBook
  * @description: Solution for string 1 in leetcode

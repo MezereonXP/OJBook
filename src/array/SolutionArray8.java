@@ -9,11 +9,11 @@ package array;
 public class SolutionArray8 {
     public void moveZeroes(int[] nums) {
         int count = 0;
-        for (int i=nums.length-1;i>=0;i--){
-            if (nums[i] == 0){
-                for (int j = i+1;j<nums.length-count;j++){
-                    int temp = nums[j-1];
-                    nums[j-1] = nums[j];
+        for (int i = nums.length - 1; i >= 0; i--) {
+            if (nums[i] == 0) {
+                for (int j = i + 1; j < nums.length - count; j++) {
+                    int temp = nums[j - 1];
+                    nums[j - 1] = nums[j];
                     nums[j] = temp;
                 }
                 count++;

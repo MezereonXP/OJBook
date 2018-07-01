@@ -1,8 +1,5 @@
 package linklist;
 
-import java.util.List;
-import java.util.Stack;
-
 /**
  * @program: SolutionLinkList5
  * @description: Solution linklist 5 for leetcode

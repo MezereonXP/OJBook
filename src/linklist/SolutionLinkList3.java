@@ -1,7 +1,5 @@
 package linklist;
 
-import java.util.List;
-
 /**
  * @program: SolutionLinkList3
  * @description: Solution for linklist 3 in leetcode

@@ -21,7 +21,7 @@ public class SolutionString4 {
             note2[chars2[i] - 'a']++;
         }
         for (int i = 0; i < 26; i++) {
-            if (note1[i] != note2[i]){
+            if (note1[i] != note2[i]) {
                 return false;
             }
         }

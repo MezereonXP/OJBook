@@ -10,20 +10,20 @@ public class SolutionLinkList4 {
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         ListNode temp1 = l1;
         ListNode temp2 = l2;
-            if (l1 == null && l2 == null) {
-                return l1;
-            } else if (l1 == null) {
-                return l2;
-            } else if (l2 == null) {
-                return l1;
-            }
+        if (l1 == null && l2 == null) {
+            return l1;
+        } else if (l1 == null) {
+            return l2;
+        } else if (l2 == null) {
+            return l1;
+        }
         ListNode node = temp1.val >= temp2.val ? temp2 : temp1;
         if (temp1.val >= temp2.val) {
             temp2 = temp2.next;
         } else {
             temp1 = temp1.next;
         }
-        while(temp1!=null&&temp2!=null) {
+        while (temp1 != null && temp2 != null) {
             if (temp1.val >= temp2.val) {
                 node.next = temp2;
                 temp2 = temp2.next;

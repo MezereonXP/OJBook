@@ -14,13 +14,13 @@ public class SolutionString5 {
         s = s.toLowerCase();
         char[] chars = s.toCharArray();
         ArrayList arrayList = new ArrayList();
-        for (char c:chars){
-            if ((c >= 'a' && c <= 'z')||(c >= '0' && c <= '9')){
+        for (char c : chars) {
+            if ((c >= 'a' && c <= 'z') || (c >= '0' && c <= '9')) {
                 arrayList.add(c);
             }
         }
-        for (int i=0;i<arrayList.size()/2;i++){
-            if (arrayList.get(i) != arrayList.get(arrayList.size() - 1 - i)){
+        for (int i = 0; i < arrayList.size() / 2; i++) {
+            if (arrayList.get(i) != arrayList.get(arrayList.size() - 1 - i)) {
                 return false;
             }
         }

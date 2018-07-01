@@ -1,8 +1,5 @@
 package dp;
 
-import java.net.Inet4Address;
-import java.util.ArrayList;
-
 /**
  * @program: OJBook
  * @description: Solution for dp 3 in leetcode
@@ -15,10 +12,10 @@ public class SolutionDP3 {
         int max = Integer.MIN_VALUE;
         for (int i = 0; i < nums.length; i++) {
             sum += nums[i];
-            if (sum>max){
+            if (sum > max) {
                 max = sum;
             }
-            if (sum <= 0){
+            if (sum <= 0) {
                 sum = 0;
             }
         }
