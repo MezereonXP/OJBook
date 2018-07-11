@@ -17,4 +17,18 @@ public class SolutionMath3 {
         }
         return false;
     }
+
+    public boolean isPowerOfTwo(int n) {
+        if (n == 0) {
+            return false;
+        }
+        int temp = n;
+        while (temp != 1) {
+            if (temp % 2 != 0) {
+                return false;
+            }
+            temp = temp >> 1;
+        }
+        return true;
+    }
 }
