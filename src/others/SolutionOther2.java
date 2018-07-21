@@ -14,7 +14,6 @@ public class SolutionOther2 {
     }
 
     public int hammingWeight(int n) {
-        Integer integer = n;
         int count = 0;
         while (n != 0) {
             if ((n & 1) == 1) {
