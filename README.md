@@ -25,8 +25,71 @@ A note of problems from leetcode
 
 1. 一个直接的解决方案是使用  O(mn) 的额外空间
 
-即直接声明一个相同大小的矩阵, 当原矩阵当中元素有0时将对应的行和列赋值为-1作为标记, 然后遍历再一遍原矩阵把应该是零的位置进行赋值
+    即直接声明一个相同大小的矩阵, 当原矩阵当中元素有0时将对应的行和列赋值为-1作为标记, 然后遍历再一遍原矩阵把应该是零的位置进行赋值
+
+    ```java
+        /**
+         * 解决方案一, 占用O(mn)的额外空间
+         *
+         * @param matrix
+         */
+        public void setZeroes(int[][] matrix) {
+            int[][] newMatrix = new int[matrix.length][matrix[0].length];
+            for (int i = 0; i < matrix.length; i++) {
+                for (int j = 0; j < matrix[0].length; j++) {
+                    if (matrix[i][j] == 0) {
+                        setColRowZero(newMatrix, i, j);
+                    }
+                }
+            }
+            for (int i = 0; i < matrix.length; i++) {
+                for (int j = 0; j < matrix[0].length; j++) {
+                    matrix[i][j] = newMatrix[i][j] == -1 ? 0 : matrix[i][j];
+                }
+            }
+        }
+        /**
+         * 将某行某列全置为-1
+         *
+         * @param newMatrix
+         * @param i
+         * @param j
+         */
+        private void setColRowZero(int[][] newMatrix, int i, int j) {
+            Arrays.fill(newMatrix[i], -1);
+            for (int k = 0; k < newMatrix.length; k++) {
+                newMatrix[k][j] = -1;
+            }
+        }
+    ```
 
 2. 一个简单的改进方案是使用 O(m + n) 的额外空间
+   
+   即声明对应行数和列数的数组用于标记, 这样即知道了哪一行和哪一列需要被置为零, 之后再遍历赋值即可
+   ```java
+           /**
+            * 解决方案二, 占用O(m+n)的额外空间
+            * @param matrix
+            */
+           public void setZeroes2(int[][] matrix) {
+               int[] labelForRow = new int[matrix.length];
+               int[] labelForCol = new int[matrix[0].length];
+       
+               for (int i = 0; i < matrix.length; i++) {
+                   for (int j = 0; j < matrix[0].length; j++) {
+                       if (matrix[i][j] == 0) {
+                           labelForRow[i] = 1;
+                           labelForCol[j] = 1;
+                       }
+                   }
+               }
+               for (int i = 0; i < matrix.length; i++) {
+                   for (int j = 0; j < matrix[0].length; j++) {
+                       matrix[i][j] = labelForCol[j] == 1 || labelForRow[i] == 1 ? 0 : matrix[i][j];
+                   }
+               }
+           }
+    ```
+    
 
 3. 一个常数空间的解决方案

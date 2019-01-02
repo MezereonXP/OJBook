@@ -23,11 +23,33 @@ public class Solution35 {
                 matrix[i][j] = newMatrix[i][j] == -1 ? 0 : matrix[i][j];
             }
         }
-
     }
 
     /**
-     * 将某行某列全置为零
+     * 解决方案二, 占用O(m+n)的额外空间
+     * @param matrix
+     */
+    public void setZeroes2(int[][] matrix) {
+        int[] labelForRow = new int[matrix.length];
+        int[] labelForCol = new int[matrix[0].length];
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                if (matrix[i][j] == 0) {
+                    labelForRow[i] = 1;
+                    labelForCol[j] = 1;
+                }
+            }
+        }
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                matrix[i][j] = labelForCol[j] == 1 || labelForRow[i] == 1 ? 0 : matrix[i][j];
+            }
+        }
+    }
+
+    /**
+     * 将某行某列全置为-1
      *
      * @param newMatrix
      * @param i
@@ -43,7 +65,7 @@ public class Solution35 {
     public static void main(String[] args) {
         int[][] m = {{1, 1, 1}, {1, 0, 1}, {1, 1, 1}};
         Solution35 solution35 = new Solution35();
-        solution35.setZeroes(m);
+        solution35.setZeroes2(m);
         for (int i = 0; i < m.length; i++) {
             System.out.println(Arrays.toString(m[i]));
         }
