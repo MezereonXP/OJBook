@@ -1,8 +1,7 @@
-[TOC]
+<!-- TOC -->autoauto- [OJBook](#ojbook)auto    - [35 矩阵置零](#35-矩阵置零)autoauto<!-- /TOC -->
 
 # OJBook
 A note of problems from leetcode
-
 
 ## 35 矩阵置零
 
