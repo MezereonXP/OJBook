@@ -5,6 +5,7 @@ A note of problems from leetcode
 - [OJBook](#ojbook)
     - [35 矩阵置零](#35-矩阵置零)
     - [70 爬楼梯](#70-爬楼梯)
+    - [121 买卖股票的最佳时机](#121-买卖股票的最佳时机)
 
 <!-- /TOC -->
 ## 35 矩阵置零
@@ -153,5 +154,46 @@ A note of problems from leetcode
                 }
             }
             return note[n];
+        }
+    ```
+
+## 121 买卖股票的最佳时机
+给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。
+
+如果你最多只允许完成一笔交易（即买入和卖出一支股票），设计一个算法来计算你所能获取的最大利润。
+
+注意你不能在买入股票前卖出股票
+
+> 示例1:
+    输入: [7,1,5,3,6,4]
+    输出: 5
+    
+1. 动态规划问题
+
+    解法为声明一个数据用于记录, 循环中不断记录最小值以及当前收益最大值, 不断利用当前收益和以往的比较, 保留较大者
+    
+    ```java
+        public int maxProfit(int[] prices) {
+            int n = prices.length;
+            if (n == 0) {
+                return 0;
+            }
+            int min = prices[0];
+            int positionOfMin = 0;
+            int[] note = new int[n];
+            for (int i = 0; i < n; i++) {
+                if (prices[i] < min) {
+                    positionOfMin = i;
+                    min = prices[i];
+                }
+                if (i == 0) {
+                    note[i] = 0;
+                } else if (i == 1) {
+                    note[i] = prices[1] > prices[0] ? prices[1] - prices[0] : 0;
+                } else {   
+                    note[i] = prices[i] - prices[positionOfMin] > note[i - 1] ? (prices[i] - prices[positionOfMin]) : note[i - 1];
+                }
+            }
+            return note[n - 1];
         }
     ```

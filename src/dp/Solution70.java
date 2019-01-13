@@ -6,7 +6,7 @@ package dp;
  * @author: mezereonxp Email: mezereonxp@gmail.com
  * @create: 2018-06-08 10:52
  **/
-public class SolutionDP1 {
+public class Solution70 {
     public int climbStairs(int n) {
         int[] note = new int[n + 1];
         for (int i = 0; i <= n; i++) {
