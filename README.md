@@ -4,6 +4,7 @@ A note of problems from leetcode
 
 - [OJBook](#ojbook)
     - [35 矩阵置零](#35-矩阵置零)
+    - [70 爬楼梯](#70-爬楼梯)
 
 <!-- /TOC -->
 ## 35 矩阵置零
@@ -120,4 +121,37 @@ A note of problems from leetcode
             }
         }
     ```
+
+## 70 爬楼梯
+
+假设你正在爬楼梯。需要 n 阶你才能到达楼顶。
+      
+每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？
+
+注意：给定 n 是一个正整数。
+
+> 示例1:
+    输入： 2
+    输出： 2
+
+
+1. 动态规划问题, 使用一个数组作为记录:
     
+    其中note就是记录的数组, note[i]就是还剩下i阶楼梯时的到楼顶的方法数
+    ```java
+        public int climbStairs(int n) {
+            int[] note = new int[n + 1];
+            for (int i = 0; i <= n; i++) {
+                if (i == 0) {
+                    note[i] = 0;
+                } else if (i == 1) {
+                    note[i] = 1;
+                } else if (i == 2) {
+                    note[i] = 2;
+                } else {
+                    note[i] = note[i - 1] + note[i - 2];
+                }
+            }
+            return note[n];
+        }
+    ```
