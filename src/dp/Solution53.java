@@ -6,7 +6,7 @@ package dp;
  * @author: mezereonxp Email: mezereonxp@gmail.com
  * @create: 2018-06-08 17:12
  **/
-public class SolutionDP3 {
+public class Solution53 {
     public int maxSubArray(int[] nums) {
         int sum = 0;
         int max = Integer.MIN_VALUE;

@@ -4,6 +4,7 @@ A note of problems from leetcode
 
 - [OJBook](#ojbook)
     - [35 矩阵置零](#35-矩阵置零)
+    - [53 最大子序和](#53-最大子序和)
     - [70 爬楼梯](#70-爬楼梯)
     - [121 买卖股票的最佳时机](#121-买卖股票的最佳时机)
 
@@ -122,6 +123,37 @@ A note of problems from leetcode
             }
         }
     ```
+
+## 53 最大子序和
+
+给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。
+
+示例:
+> 输入: [-2,1,-3,4,-1,2,1,-5,4],
+> 输出: 6
+> 解释: 连续子数组 [4,-1,2,1] 的和最大,为6。
+
+1. 比较tricky的解法
+
+    原理为从一开始就开始求和, 然后记录最大值, 当和小于0的时候, 重新开始求和
+    
+    其中理由为, 如果这个和的值小于0, 那么必不可能是某段最大和序列的前缀
+```java
+    public int maxSubArray(int[] nums) {
+        int sum = 0;
+        int max = Integer.MIN_VALUE;
+        for (int i = 0; i < nums.length; i++) {
+            sum += nums[i];
+            if (sum > max) {
+                max = sum;
+            }
+            if (sum <= 0) {
+                sum = 0;
+            }
+        }
+        return max;
+    }
+```
 
 ## 70 爬楼梯
 
