@@ -1,5 +1,5 @@
 # OJBook
-A note of problems from leetcode
+Leetcode 题解
 <!-- TOC -->
 
 - [OJBook](#ojbook)
