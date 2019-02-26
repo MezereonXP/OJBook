@@ -6,6 +6,7 @@ Leetcode 题解
     - [35 矩阵置零](#35-矩阵置零)
     - [53 最大子序和](#53-最大子序和)
     - [70 爬楼梯](#70-爬楼梯)
+    - [108 将有序数组转换为二叉搜索树](#108-将有序数组转换为二叉搜索树)
     - [121 买卖股票的最佳时机](#121-买卖股票的最佳时机)
 
 <!-- /TOC -->
@@ -188,6 +189,47 @@ Leetcode 题解
             return note[n];
         }
     ```
+
+##108 将有序数组转换为二叉搜索树
+将一个按照升序排列的有序数组，转换为一棵高度平衡二叉搜索树。
+
+本题中，一个高度平衡二叉树是指一个二叉树每个节点 的左右两个子树的高度差的绝对值不超过 1。
+
+> 示例:
+> 给定有序数组: [-10,-3,0,5,9],
+> 一个可能的答案是：[0,-3,9,-10,null,5]，它可以表示下面这个高度平衡二叉搜索树：
+
+![tree](asset/tree.png)
+
+只需要递归地构造左子树和右子树即可
+
+```java
+    public TreeNode sortedArrayToBST(int[] nums) {
+        if (nums.length == 0) {
+            return null;
+        }
+        TreeNode root = new TreeNode(nums[nums.length / 2]);// 3/2 = 1, 5/2 = 2 that is the middle position
+        createBST(root, nums, nums.length / 2 + 1, nums.length - 1, 1);
+        createBST(root, nums, 0, nums.length / 2 - 1, 2);
+        return root;
+    }
+
+    private void createBST(TreeNode node, int[] nums, int start, int end, int flag) {
+        int length = end - start + 1;
+        if (start > end) {
+            return;
+        }
+        if (flag == 1) {
+            node.right = new TreeNode(nums[start + length / 2]);
+        } else {
+            node.left = new TreeNode(nums[start + length / 2]);
+        }
+        if (start < end) {
+            createBST(flag == 1 ? node.right : node.left, nums, start + length / 2 + 1, end, 1);
+            createBST(flag == 1 ? node.right : node.left, nums, start, start + length / 2 - 1, 2);
+        }
+    }
+```
 
 ## 121 买卖股票的最佳时机
 给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。

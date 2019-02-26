@@ -6,7 +6,7 @@ package tree;
  * @author: mezereonxp Email: mezereonxp@gmail.com
  * @create: 2018/7/3
  **/
-public class SolutionTree5 {
+public class Solution108 {
 
     public TreeNode sortedArrayToBST(int[] nums) {
         if (nums.length == 0) {
