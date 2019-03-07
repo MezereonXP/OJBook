@@ -1,7 +1,5 @@
 package math;
 
-import java.math.BigInteger;
-
 public class SolutionMath5 {
 
     public static void main(String[] args) {
