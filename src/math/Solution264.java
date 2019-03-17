@@ -19,29 +19,18 @@ public class Solution264 {
     }
 
     public int nthUglyNumber(int n) {
-        if (n <= 6)
-            return n;
-        int[] isUgly = new int[399999999];
-        int count = 4;
-        isUgly[1] = 1;
-        isUgly[2] = 2;
-        isUgly[3] = 3;
-        isUgly[5] = 5;
-        for (int i = 1; i <= n; i++) {
-            for (int j = 1; j <= i; j++) {
-                if (isUgly[i] * isUgly[j] < 399999999 && isUgly[isUgly[i] * isUgly[j]] == 0) {
-                    isUgly[isUgly[i] * isUgly[j]] = isUgly[i] * isUgly[j];
-                }
-            }
+        if (n == 1) return n;
+        int[] num = new int[n];
+        num[0] = 1;
+        int x2 = 0;
+        int x3 = 0;
+        int x5 = 0;
+        for (int i = 1; i < n; i++) {
+            num[i] = Math.min(Math.min(num[x2] * 2, num[x3] * 3), num[x5] * 5);
+            if (num[i] == num[x2] * 2) x2++;
+            if (num[i] == num[x3] * 3) x3++;
+            if (num[i] == num[x5] * 5) x5++;
         }
-        int position = 0;
-        count = 0;
-        while (count != n) {
-            if (isUgly[position] != 0) {
-                count++;
-            }
-            position++;
-        }
-        return (int) isUgly[position - 1];
+        return num[n - 1];
     }
 }
