@@ -4,6 +4,7 @@ Leetcode 题解
 
 - [OJBook](#ojbook)
     - [35 矩阵置零](#35-矩阵置零)
+    - [43 字符串相乘](#43-字符串相乘)
     - [53 最大子序和](#53-最大子序和)
     - [70 爬楼梯](#70-爬楼梯)
     - [108 将有序数组转换为二叉搜索树](#108-将有序数组转换为二叉搜索树)
@@ -124,6 +125,66 @@ Leetcode 题解
             }
         }
     ```
+## 43 字符串相乘
+
+给定两个以字符串形式表示的非负整数 num1 和 num2，返回 num1 和 num2 的乘积，它们的乘积也表示为字符串形式。
+
+实例：
+> 输入: num1 = "2", num2 = "3"
+> 输出: "6"
+> 输入: num1 = "123", num2 = "456"
+> 输出: "56088"
+
+考虑两数乘法相乘法则，num1中第i位数与num2中第j位数相乘得到的结果位于第i+j位（索引从0开始）。因此从第0位开始，考虑相乘的结果位于第0位的组合，显然只有num1和num2同取第0位这种组合，相乘后将对10取模作为个位，相乘对10整除作为进位，接着考虑第1位，显然组合情况有num1取第0位，num2取第1位；num1取第1位，num2取第0位这两种情况，将这两种情况相乘得到的结果相加并加上之前的进位，还是对10取模作为这个位置上的数，对10整除作为进位，依次类推。
+```c++
+class Solution {
+public:
+    string multiply(string num1, string num2) {
+        //处理num1和num2都为0时的特殊情况
+        if(num1 == "0" || num2 == "0"){
+            return "0";
+        }
+        //默认num1长度大于等于num2，如果不是，交换2个数
+        if(num1.length() < num2.length()){
+            string temp;
+            temp = num1;
+            num1 = num2;
+            num2 = temp;
+        }
+        string result = "";//储存最后相乘结果
+        int i,j;
+        int len1 = num1.length();//num1长度
+        int len2 = num2.length();//num2长度
+        int add = 0;
+        //从第0位开始，到len2 + len1 - 2位为止
+        for(i = len1 + len2 - 2;i >= 0;i--){
+            int num = 0;
+            // 得到所有位数之和等于i的组合，相加之后并加上之前的进位
+            for(j = len2 - 1;j >=0;j--){
+                int index = i - j;
+                if(index >= 0 && index < len1){
+                    int a = num1[index] - '0';
+                    int b = num2[j] - '0';
+                    num += a*b;
+                }
+            }
+            num += add;
+            // 结果整除10作为下次进位
+            add = num / 10;
+            //结果mod10作为这个位置上的数
+            char a = '0' + num % 10;
+            result  = a + result;
+        }
+        //最后处理一下最高位的进位
+        if(add != 0){
+            stringstream ss;
+            ss<<add;
+            result  = ss.str() + result;
+        }
+        return result;
+    }
+};
+```
 
 ## 53 最大子序和
 
