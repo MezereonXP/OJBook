@@ -1,5 +1,6 @@
 package others;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -86,4 +87,26 @@ public class Solution787 {
         }
         return min[dst] == 0 ? -1 : min[dst];
     }
+
+    public int findCheapestPrice3(int n, int[][] flights, int src, int dst, int K) {
+        /**
+         动态规划解法, dp[i][k]表示经过k个中转站后到达站i的最低费用
+         初始除了dp[src][0]~dp[src][k]之外所有的元素置为无穷大inf
+         则状态方程为: 对于所有目标地位i的航班(flight[1] = i)
+         只要dp[flight[0]][k-1] != inf就更新dp[i][k]
+         dp[i][k] = Math.min(dp[i][k], dp[flight[0]][k-1])
+         **/
+        int[][] dp = new int[n][K + 2];
+        for (int i = 0; i < n; ++i) Arrays.fill(dp[i], Integer.MAX_VALUE);
+        for (int k = 0; k <= K + 1; ++k) dp[src][k] = 0;
+        for (int k = 1; k <= K + 1; ++k) {
+            for (int[] flight : flights) {
+                if (dp[flight[0]][k - 1] != Integer.MAX_VALUE)
+                    dp[flight[1]][k] = Math.min(dp[flight[1]][k], dp[flight[0]][k - 1] + flight[2]);
+            }
+        }
+        return dp[dst][K + 1] == Integer.MAX_VALUE ? -1 : dp[dst][K + 1];
+    }
+
+
 }
