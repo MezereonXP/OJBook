@@ -13,4 +13,14 @@ public class ListNode {
     ListNode(int x) {
         val = x;
     }
+
+    ListNode(String s) {
+        String[] strings = s.split(",");
+        if (strings[0].equals(""))
+            return;
+        this.val = Integer.parseInt(strings[0]);
+        for (int i = 1; i < strings.length; i++) {
+            this.next = new ListNode(s.substring(2));
+        }
+    }
 }
